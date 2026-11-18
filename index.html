@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, 奕廷哥 ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --card-bg: #FFFFFF;
+      --paper-tint: #F4EFE6;
+      --text-main: #2C2A29;
+      --text-muted: #6E6A66;
+      --accent: #C87D32;
+      --accent-hover: #B06A24;
+      --accent-soft: rgba(200, 125, 50, 0.12);
+      --border: #E6DFD5;
+      --shadow: 0 12px 32px rgba(44, 42, 41, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(#E5DEC9 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      line-height: 1.7;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+    }
+
+    .screen {
+      display: none;
+      animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 通用卡片樣式 */
+    .paper-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, .serif {
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    /* 第一幕：信封封面 */
+    .envelope-box {
+      text-align: center;
+      padding: 48px 28px;
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--paper-tint) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .wax-seal {
+      width: 68px;
+      height: 68px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 16px rgba(200, 125, 50, 0.35);
+      border: 3px solid #F6E6D3;
+    }
+
+    .envelope-box h1 {
+      font-size: 1.75rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .envelope-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    /* 按鈕 */
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(200, 125, 50, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* 卡片內文 */
+    .letter-content {
+      background: var(--paper-tint);
+      border-radius: 14px;
+      padding: 24px 22px;
+      margin: 16px 0 24px;
+      font-size: 1.02rem;
+      color: var(--text-main);
+      border-left: 3px solid var(--accent);
+    }
+
+    .letter-content p {
+      margin-bottom: 14px;
+    }
+
+    .letter-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .signature {
+      text-align: right;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-top: 12px;
+    }
+
+    /* 測驗選項 */
+    .progress-bar {
+      height: 6px;
+      background: var(--paper-tint);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 33%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-q {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-align: left;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .option-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateX(4px);
+    }
+
+    /* 左右二選一 PK 卡片 */
+    .warm-note {
+      background: #FFF9F0;
+      border: 1px dashed var(--accent);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: #8C5319;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .pk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 440px) {
+      .pk-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gift-choice {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .gift-choice:hover {
+      border-color: var(--accent);
+      background: #FFFFFF;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(200, 125, 50, 0.16);
+    }
+
+    .gift-icon {
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+    }
+
+    .gift-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .gift-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .select-pill {
+      margin-top: 14px;
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    /* 最終兌換憑證 */
+    .voucher {
+      border: 2px solid var(--accent);
+      border-radius: 18px;
+      padding: 28px 22px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF5EC 100%);
+      text-align: center;
+      margin: 18px 0 22px;
+      position: relative;
+    }
+
+    .voucher-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .voucher-gift {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 10px 0;
+    }
+
+    .voucher-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 14px;
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .copy-toast {
+      font-size: 0.85rem;
+      color: #2E7D32;
+      margin-top: 10px;
+      min-height: 20px;
+      font-weight: 600;
+    }
+
+    canvas#confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="app-container">
+
+    <!-- 第一幕：信封封面 -->
+    <div id="screen-envelope" class="screen active">
+      <div class="envelope-box">
+        <div class="wax-seal">11.21</div>
+        <span class="badge">A SPECIAL BIRTHDAY NOTE</span>
+        <h1>To：奕廷哥</h1>
+        <p class="envelope-sub">有一封給你的生日卡片，還有一個小小的特別任務。</p>
+        <button class="btn-primary" onclick="goToScreen('screen-card')">拆開信封 ✨</button>
+      </div>
+    </div>
+
+    <!-- 第二幕：生日卡片 -->
+    <div id="screen-card" class="screen">
+      <div class="paper-card">
+        <span class="badge">BIRTHDAY CARD</span>
+        <h2 style="font-size: 1.4rem;">給最可靠的奕廷哥</h2>
+        <div class="letter-content">
+          <p><strong>Dear 哥：</strong></p>
+          <p>生日快樂，轉眼又過了一歲。</p>
+          <p>一直很佩服你在工作上的表現，還有待人處事的圓滑與成熟，你一直是我學習最好的榜樣。</p>
+          <p>謝謝你和家人總是帶給我這麼堅強、可靠的感受；我也希望在你的心裡，我同樣是一份安定的力量。</p>
+          <p>祝你新的一歲平安、順心，每天都過得自在開心！</p>
+          <div class="signature">沛欣 妹</div>
+        </div>
+        <button class="btn-primary" onclick="startQuiz()">領取你的生日任務 →</button>
+      </div>
+    </div>
+
+    <!-- 第三幕：輕鬆質感引導測驗 -->
+    <div id="screen-quiz" class="screen">
+      <div class="paper-card">
+        <div class="progress-bar"><div class="progress-fill" id="quiz-progress"></div></div>
+        <span class="badge" id="quiz-step-label">QUESTION 1 / 3</span>
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="option-list" id="quiz-options"></div>
+      </div>
+    </div>
+
+    <!-- 第四幕：四強左右二選一 PK -->
+    <div id="screen-pk" class="screen">
+      <div class="paper-card">
+        <span class="badge" id="pk-round-badge">ROUND 1 / 3</span>
+        <h2 style="font-size: 1.35rem; margin-bottom: 8px;">今年的生日禮物，由你親自決定！</h2>
+        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 14px;">
+          怕買到你用不到的東西，所以等你選好我再去買 🎁
+        </p>
+        <div class="warm-note">
+          💡 貼心提醒：這幾個選項的價值都差不多，不用替我省錢或糾結划算度，<strong>照你自己的心意去挑最喜歡、現在最想要的那一個比較重要！</strong>
+        </div>
+
+        <div class="pk-grid" id="pk-container"></div>
+      </div>
+    </div>
+
+    <!-- 第五幕：最終專屬兌換券 -->
+    <div id="screen-result" class="screen">
+      <div class="paper-card" style="text-align: center;">
+        <span class="badge">MISSION COMPLETE 🎉</span>
+        <h2 style="font-size: 1.45rem;">奕廷哥的最終選擇出爐！</h2>
+        <p style="font-size: 0.92rem; color: var(--text-muted); margin-top: 4px;">
+          這份禮物已經鎖定，截圖或複製下方憑證傳給我就好囉！
+        </p>
+
+        <div class="voucher">
+          <div class="voucher-label">2026 BIRTHDAY GIFT VOUCHER</div>
+          <div id="final-icon" style="font-size: 3rem; margin: 6px 0;"></div>
+          <div class="voucher-gift" id="final-title"></div>
+          <div id="final-desc" style="font-size: 0.9rem; color: var(--text-muted);"></div>
+          <div class="voucher-meta">
+            <span>持有者：<strong>奕廷哥</strong></span>
+            <span>兌換期限：<strong>永久有效</strong></span>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="copyVoucher()">📋 一鍵複製兌換訊息傳給沛欣</button>
+        <div class="copy-toast" id="copy-toast"></div>
+        <div style="margin-top: 10px;">
+          <button class="btn-secondary" onclick="resetPK()">想重新選一次看看</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 畫面切換
+    function goToScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- 輕鬆質感引導問題 ---
+    const quizData = [
+      {
+        q: "忙碌了一整週，週末終於有完整空檔時，你最想怎麼度過？",
+        options: [
+          { icon: "🛋️", text: "待在最舒服的空間裡，徹底放空沉浸在自己的世界", tag: "switch" },
+          { icon: "🔥", text: "出門走走、看場現場演出或比賽，感受熱血氣氛", tag: "ticket" }
+        ]
+      },
+      {
+        q: "如果突然多出一筆小預算，你直覺會想怎麼運用它？",
+        options: [
+          { icon: "📈", text: "放進投資帳戶讓錢慢慢滾大，看著資產成長最踏實", tag: "stock" },
+          { icon: "✨", text: "拿來好好犒賞自己，換取當下最純粹的快樂與放鬆", tag: "switch" }
+        ]
+      },
+      {
+        q: "老實說，最近在工作與生活之間衝刺，身體有沒有發出小抗議？",
+        options: [
+          { icon: "💆‍♂️", text: "有喔，肩頸或腰背真的有點緊繃，需要專業鬆一下", tag: "physio" },
+          { icon: "⚡", text: "狀態還不錯！現在更需要精神上的充電與新鮮體驗", tag: "ticket" }
+        ]
+      }
+    ];
+
+    let currentQuiz = 0;
+
+    function startQuiz() {
+      currentQuiz = 0;
+      renderQuiz();
+      goToScreen('screen-quiz');
+    }
+
+    function renderQuiz() {
+      const item = quizData[currentQuiz];
+      document.getElementById('quiz-step-label').textContent = `QUESTION ${currentQuiz + 1} / ${quizData.length}`;
+      document.getElementById('quiz-progress').style.width = `${((currentQuiz + 1) / quizData.length) * 100}%`;
+      document.getElementById('quiz-question').textContent = item.q;
+
+      const optContainer = document.getElementById('quiz-options');
+      optContainer.innerHTML = item.options.map(opt => `
+        <button class="option-btn" onclick="nextQuiz()">
+          <span style="font-size: 1.4rem;">${opt.icon}</span>
+          <span>${opt.text}</span>
+        </button>
+      `).join('');
+    }
+
+    function nextQuiz() {
+      currentQuiz++;
+      if (currentQuiz < quizData.length) {
+        renderQuiz();
+      } else {
+        initPK();
+        goToScreen('screen-pk');
+      }
+    }
+
+    // --- 4 項等值禮物左右二選一擂台 ---
+    const gifts = [
+      {
+        id: "switch",
+        icon: "🎮",
+        title: "Nintendo Switch",
+        desc: "下班週末隨時開玩，專屬你的舒壓遊戲時光"
+      },
+      {
+        id: "stock",
+        icon: "📈",
+        title: "股票投資專屬資金",
+        desc: "直接轉化為你的投資本金，陪你一起看資產穩健成長"
+      },
+      {
+        id: "physio",
+        icon: "💆‍♂️",
+        title: "專業物理治療券",
+        desc: "徹底放鬆緊繃的肩頸與腰背，把身體狀態調回滿格"
+      },
+      {
+        id: "ticket",
+        icon: "🎫",
+        title: "演唱會 / 球賽門票",
+        desc: "走進現場感受震撼與熱血，收藏一場難忘的回憶"
+      }
+    ];
+
+    let championIndex = 0;
+    let challengerIndex = 1;
+    let round = 1;
+
+    function initPK() {
+      championIndex = 0;
+      challengerIndex = 1;
+      round = 1;
+      renderPK();
+    }
+
+    function renderPK() {
+      document.getElementById('pk-round-badge').textContent = `二選一對決 · 第 ${round} / ${gifts.length - 1} 輪`;
+      const leftGift = gifts[championIndex];
+      const rightGift = gifts[challengerIndex];
+
+      const container = document.getElementById('pk-container');
+      container.innerHTML = `
+        <div class="gift-choice" onclick="chooseGift(${championIndex})">
+          <div>
+            <div class="gift-icon">${leftGift.icon}</div>
+            <div class="gift-title">${leftGift.title}</div>
+            <div class="gift-desc">${leftGift.desc}</div>
+          </div>
+          <div><span class="select-pill">選左邊這個</span></div>
+        </div>
+
+        <div class="gift-choice" onclick="chooseGift(${challengerIndex})">
+          <div>
+            <div class="gift-icon">${rightGift.icon}</div>
+            <div class="gift-title">${rightGift.title}</div>
+            <div class="gift-desc">${rightGift.desc}</div>
+          </div>
+          <div><span class="select-pill">選右邊這個</span></div>
+        </div>
+      `;
+    }
+
+    function chooseGift(selectedIdx) {
+      championIndex = selectedIdx;
+      challengerIndex++;
+      round++;
+
+      if (challengerIndex < gifts.length) {
+        renderPK();
+      } else {
+        showFinalResult(gifts[championIndex]);
+      }
+    }
+
+    let finalSelectedGift = null;
+
+    function showFinalResult(gift) {
+      finalSelectedGift = gift;
+      document.getElementById('final-icon').textContent = gift.icon;
+      document.getElementById('final-title').textContent = gift.title;
+      document.getElementById('final-desc').textContent = gift.desc;
+      document.getElementById('copy-toast').textContent = '';
+      goToScreen('screen-result');
+      launchConfetti();
+    }
+
+    function resetPK() {
+      initPK();
+      goToScreen('screen-pk');
+    }
+
+    function copyVoucher() {
+      if (!finalSelectedGift) return;
+      const text = `🎂 奕廷哥的 11/21 生日禮物兌換券！\n我選好了，今年最想要的禮物是：【${finalSelectedGift.icon} ${finalSelectedGift.title}】✨`;
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('copy-toast').textContent = '✅ 已複製成功！可以直接貼到 LINE 傳給沛欣囉～';
+      }).catch(() => {
+        document.getElementById('copy-toast').textContent = '請直接截圖此畫面傳給沛欣就可以囉！';
+      });
+    }
+
+    // --- 輕量慶祝彩帶動畫 ---
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const pieces = Array.from({ length: 65 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        w: 8 + Math.random() * 6,
+        h: 6 + Math.random() * 6,
+        color: ['#C87D32', '#E6A15C', '#D9534F', '#5CB85C', '#F0AD4E'][Math.floor(Math.random() * 5)],
+        speed: 2 + Math.random() * 3,
+        angle: Math.random() * 360
+      }));
+
+      let frames = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.angle += 3;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.angle * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frames++;
+        if (frames < 160) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      draw();
+    }
+  </script>
+</body>
+</html>
